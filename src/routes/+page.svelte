@@ -1,11 +1,23 @@
 <script lang="ts">
+	import cookie from 'cookie';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	function setLocaleCookie() {
+		const localeCookie = cookie.serialize('locale', 'fr', {
+			domain: location.hostname,
+			path: '/',
+			sameSite: true,
+			secure: location.protocol === 'https:'
+		});
+		console.log('Saving cookie:', localeCookie);
+		document.cookie = localeCookie;
+	}
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p><code>locale</code> cookie: <code>{data.locale}</code></p>
 
-<p>`locale` cookie: {data.locale}</p>
-<p>`locale` obtained from: {data.from}</p>
+<p><code>locale</code> obtained from: <strong>{data.from}</strong></p>
+
+<button on:click={setLocaleCookie}>Set <code>locale</code> cookie</button>
