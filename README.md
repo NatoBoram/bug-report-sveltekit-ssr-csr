@@ -62,6 +62,12 @@ pnpm dev
 # PWA - It doesn't work
 pnpm build
 pnpx http-server ./build
+
+# PWA - How it should work
+find src/routes -name '+*.server.*' -delete
+pnpm build
+http-server ./build
+git checkout -- 'src/routes/+*.server.*'
 ```
 
 ![image](https://github.com/NatoBoram/bug-report-sveltekit-ssr-csr/assets/10495562/77a0eea5-1930-425e-84cf-6cfcad434e3c)
