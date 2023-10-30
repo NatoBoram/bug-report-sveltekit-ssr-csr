@@ -1,6 +1,6 @@
+import { browser } from '$app/environment';
 import cookie from 'cookie';
 import type { PageLoad } from './$types';
-import { browser } from '$app/environment';
 
 export const load = (({ data }) => {
 	if (browser)
